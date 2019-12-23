@@ -1,10 +1,10 @@
-MAIN_DECK_AGE1 = '86173d'
+MAIN_DECK_AGE1 = '64b02e'
 ORANGE_DECK_AGE1 = '7d3602'
 BLACK_DECK_AGE1 = '8e7217'
-MAIN_DECK_AGE2 = '8aa8bb'
+MAIN_DECK_AGE2 = 'ca2460'
 ORANGE_DECK_AGE2 = '7a3b91'
 BLACK_DECK_AGE2 = 'e96078'
-MAIN_DECK_AGE3 = 'fef497'
+MAIN_DECK_AGE3 = '620415'
 ORANGE_DECK_AGE3 = '29b86e'
 BLACK_DECK_AGE3 = '56ac79'
 GUILDS_DECK = '1b9e63'
@@ -12,12 +12,15 @@ GUILDS_DECK2 = 'a61e39'
 GUILDS_DECK3 = '64214f'
 GUILDS_DECK4 = 'b464e3'
 GUILDS_DECK5 = '37f1a4'
-GUILDS_DECK6 = 'd16b9f'
+-- GUILDS_DECK6 = 'd16b9f'
 LEADER_DECK1 = '5117f1'
-LEADER_DECK2 = '3f5c9b'
+LEADER_DECK2 = '8045f8'
 LEADER_DECK3 = '4dc449'
 LEADER_DECK4 = '72b705'
 LEADER_DECK5 = '17d544'
+ARMADA_DECK_AGE1 = '32e18e'
+ARMADA_DECK_AGE2 = '761a7d'
+ARMADA_DECK_AGE3 = '9c0993'
 -- 4 orange 4 chornih
 function onLoad()
   object1 = getObjectFromGUID(MAIN_DECK_AGE1)
@@ -29,12 +32,15 @@ function onLoad()
   object7 = getObjectFromGUID(MAIN_DECK_AGE3)
   object8 = getObjectFromGUID(ORANGE_DECK_AGE3)
   object9 = getObjectFromGUID(BLACK_DECK_AGE3)
+  object10 = getObjectFromGUID(ARMADA_DECK_AGE1)
+  object11 = getObjectFromGUID(ARMADA_DECK_AGE2)
+  object12 = getObjectFromGUID(ARMADA_DECK_AGE3)
   GUILDS_DECK = getObjectFromGUID(GUILDS_DECK)
   GUILDS_DECK2 = getObjectFromGUID(GUILDS_DECK2)
   GUILDS_DECK3 = getObjectFromGUID(GUILDS_DECK3)
   GUILDS_DECK4 = getObjectFromGUID(GUILDS_DECK4)
   GUILDS_DECK5 = getObjectFromGUID(GUILDS_DECK5)
-  GUILDS_DECK6 = getObjectFromGUID(GUILDS_DECK6)
+--  GUILDS_DECK6 = getObjectFromGUID(GUILDS_DECK6)
 end
 
 
@@ -51,18 +57,27 @@ function deal_age1()
     object1.shuffle()
     object2.shuffle()
     object3.shuffle()
+    object10.shuffle()
   end
   -- split orange
-  newDeck2 = object2.cut(4)
+  newDeck2 = object2.cut(6)
   TEMP_DECK_AGE1 = object1.putObject(newDeck2[2])
   -- split black
-  newDeck3 = object3.cut(4)
-  FINAL_DECK_AGE1 = TEMP_DECK_AGE1.putObject(newDeck3[2])
+  newDeck3 = object3.cut(6)
+  TEMP_DECK_AGE1 = TEMP_DECK_AGE1.putObject(newDeck3[2])
+  -- split armada
+  newDeck228 = object10.cut(6)
+  FINAL_DECK_AGE1 = TEMP_DECK_AGE1.putObject(newDeck228[2])
+
   for i = 1, 10 do
     FINAL_DECK_AGE1.shuffle()
   end
-  FINAL_DECK_AGE1.split(4)
-end
+
+  temporar = FINAL_DECK_AGE1.split(6)
+  for i = 1, 6 do
+    temporar[i].flip()
+  end
+  end
 
 
 -- AGE2
@@ -71,17 +86,25 @@ function deal_age2()
   object4.shuffle()
   object5.shuffle()
   object6.shuffle()
+  object11.shuffle()
   end
   -- split orange
-  newDeck4 = object5.cut(4)
+  newDeck4 = object5.cut(6)
   TEMP_DECK_AGE2 = object4.putObject(newDeck4[2])
   -- split black
-  newDeck5 = object6.cut(4)
-  FINAL_DECK_AGE2 = TEMP_DECK_AGE2.putObject(newDeck5[2])
+  newDeck5 = object6.cut(6)
+  TEMP_DECK_AGE2 = TEMP_DECK_AGE2.putObject(newDeck5[2])
+  -- split armada
+  newDeck229 = object11.cut(6)
+  FINAL_DECK_AGE2 = TEMP_DECK_AGE2.putObject(newDeck229[2])
+
   for i = 1, 10 do
     FINAL_DECK_AGE2.shuffle()
   end
-  FINAL_DECK_AGE2.split(4)
+  temporar2 = FINAL_DECK_AGE2.split(6)
+  for i = 1, 6 do
+    temporar2[i].flip()
+  end
 end
 
 
@@ -91,28 +114,32 @@ function deal_age3()
     object7.shuffle()
     object8.shuffle()
     object9.shuffle()
+    object12.shuffle()
   end
   --split orange
-  newDeck6 = object8.cut(4)
+  newDeck6 = object8.cut(6)
   TEMP_DECK_AGE3 = object7.putObject(newDeck6[2])
   --split black
-  newDeck7 = object9.cut(4)
-  FINAL_DECK_AGE3 = TEMP_DECK_AGE3.putObject(newDeck7[2])
+  newDeck7 = object9.cut(6)
+  TEMP_DECK_AGE3 = TEMP_DECK_AGE3.putObject(newDeck7[2])
+  --split armada
+  newDeck230 = object12.cut(6)
+  FINAL_DECK_AGE3 = TEMP_DECK_AGE3.putObject(newDeck230[2])
   --guilds
   GUILDS_DECK.putObject(GUILDS_DECK2)
   GUILDS_DECK.putObject(GUILDS_DECK3)
   GUILDS_DECK.putObject(GUILDS_DECK4)
   GUILDS_DECK.putObject(GUILDS_DECK5)
-  GUILDS_DECK.putObject(GUILDS_DECK6)
+  --GUILDS_DECK.putObject(GUILDS_DECK6)
   for i = 1, 10 do
     GUILDS_DECK.shuffle()
   end
-  CUT_PURPLE = GUILDS_DECK.cut(6)
+  CUT_PURPLE = GUILDS_DECK.cut(8)
   FINAL_DECK_AGE3.putObject(CUT_PURPLE[2])
   for i = 1, 10 do
     FINAL_DECK_AGE3.shuffle()
   end
-  FINAL_DECK_AGE3.split(4)
+  temporar3 = FINAL_DECK_AGE3.split(6)
 end
 
 
