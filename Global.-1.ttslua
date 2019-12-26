@@ -48,16 +48,28 @@ function onLoad()
   LEADER_DECK5 = getObjectFromGUID(LEADER_DECK5)
 end
 
+haha = 1
+
 
 function onScriptingButtonDown(index, player_color)
   if index == 1 and player_color == 'White' then deal_age1() deal_age2() deal_age3() end
   if index == 2 then deal_leaders() end
-  if index == 3 and player_color == 'white' then test_function() end
+  if index == 4 then shuffle_function(5, LEADER_DECK1) end
 end
 
 function onUpdate ()
 end
 
+function shuffle_function(counter, deck)
+  if counter == 0 then return true end
+  if counter > 0 then deck.shuffle() counter = counter - 1 Wait.condition(function () shuffle_function(counter, deck) end,
+                                                                          function() return check_deck(deck) end,
+                                                                          3) end
+end
+
+function check_deck(deck)
+  return deck.resting
+end
 
 -- AGE 1
 function deal_age1()
@@ -169,11 +181,4 @@ function deal_leaders()
     LEADER_DECK1.deal(4, 'Blue')
     LEADER_DECK1.deal(4, 'Pink')
     LEADER_DECK1.flip()
-end
-
-function test_function()
-  print("UUUUUU")
-  for i = 0, 2 do
-    LEADER_DECK1.flip()
-  end
 end
