@@ -52,6 +52,7 @@ end
 function onScriptingButtonDown(index, player_color)
   if index == 1 and player_color == 'White' then deal_age1() deal_age2() deal_age3() end
   if index == 2 then deal_leaders() end
+  if index == 3 and player_color == 'white' then test_function() end
 end
 
 function onUpdate ()
@@ -81,7 +82,7 @@ function deal_age1()
   end
 
   temporar = FINAL_DECK_AGE1.split(6)
-  for i = 1, 6 do
+  for i = 0, 6 do
     temporar[i].flip()
   end
   end
@@ -147,7 +148,7 @@ function deal_age3()
     FINAL_DECK_AGE3.shuffle()
   end
   temporar3 = FINAL_DECK_AGE3.split(6)
-  for i = 1, 10 do
+  for i = 0, 6 do
     temporar3[i].flip()
   end
 end
@@ -168,4 +169,11 @@ function deal_leaders()
     LEADER_DECK1.deal(4, 'Blue')
     LEADER_DECK1.deal(4, 'Pink')
     LEADER_DECK1.flip()
+end
+
+function test_function()
+  print("UUUUUU")
+  for i = 0, 2 do
+    LEADER_DECK1.flip()
+  end
 end
