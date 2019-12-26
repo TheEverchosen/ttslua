@@ -14,7 +14,7 @@ GUILDS_DECK4 = 'b464e3'
 GUILDS_DECK5 = '37f1a4'
 -- GUILDS_DECK6 = 'd16b9f'
 LEADER_DECK1 = '5117f1'
-LEADER_DECK2 = '8045f8'
+LEADER_DECK2 = '3f5c9b'
 LEADER_DECK3 = '4dc449'
 LEADER_DECK4 = '72b705'
 LEADER_DECK5 = '17d544'
@@ -41,12 +41,19 @@ function onLoad()
   GUILDS_DECK4 = getObjectFromGUID(GUILDS_DECK4)
   GUILDS_DECK5 = getObjectFromGUID(GUILDS_DECK5)
 --  GUILDS_DECK6 = getObjectFromGUID(GUILDS_DECK6)
+  LEADER_DECK1 = getObjectFromGUID(LEADER_DECK1)
+  LEADER_DECK2 = getObjectFromGUID(LEADER_DECK2)
+  LEADER_DECK3 = getObjectFromGUID(LEADER_DECK3)
+  LEADER_DECK4 = getObjectFromGUID(LEADER_DECK4)
+  LEADER_DECK5 = getObjectFromGUID(LEADER_DECK5)
 end
 
 
 function onScriptingButtonDown(index, player_color)
   if index == 1 and player_color == 'White' then deal_age1() deal_age2() deal_age3() end
+  if index == 2 then deal_leaders() end
 end
+
 function onUpdate ()
 end
 
@@ -140,9 +147,25 @@ function deal_age3()
     FINAL_DECK_AGE3.shuffle()
   end
   temporar3 = FINAL_DECK_AGE3.split(6)
+  for i = 1, 10 do
+    temporar3[i].flip()
+  end
 end
 
 
+--LEADERS
 function deal_leaders()
-
+    LEADER_DECK1.putObject(LEADER_DECK2)
+    LEADER_DECK1.putObject(LEADER_DECK3)
+    LEADER_DECK1.putObject(LEADER_DECK4)
+    LEADER_DECK1.putObject(LEADER_DECK5)
+    for i = 1, 10 do
+      LEADER_DECK1.shuffle()
+    end
+    LEADER_DECK1.deal(4, 'White')
+    LEADER_DECK1.deal(4, 'Green')
+    LEADER_DECK1.deal(4, 'Orange')
+    LEADER_DECK1.deal(4, 'Blue')
+    LEADER_DECK1.deal(4, 'Pink')
+    LEADER_DECK1.flip()
 end
