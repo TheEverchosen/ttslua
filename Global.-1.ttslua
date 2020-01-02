@@ -1,4 +1,4 @@
-MAIN_DECK_AGE1 = '64b02e'
+MAIN_DECK_AGE1MAIN_DECK_AGE1 = '64b02e'
 ORANGE_DECK_AGE1 = '7d3602'
 BLACK_DECK_AGE1 = '8e7217'
 MAIN_DECK_AGE2 = 'ca2460'
@@ -23,18 +23,18 @@ ARMADA_DECK_AGE2 = '761a7d'
 ARMADA_DECK_AGE3 = '9c0993'
 -- 4 orange 4 chornih
 function onLoad()
-  object1 = getObjectFromGUID(MAIN_DECK_AGE1)
-  object2 = getObjectFromGUID(ORANGE_DECK_AGE1)
-  object3 = getObjectFromGUID(BLACK_DECK_AGE1)
-  object4 = getObjectFromGUID(MAIN_DECK_AGE2)
-  object5 = getObjectFromGUID(ORANGE_DECK_AGE2)
-  object6 = getObjectFromGUID(BLACK_DECK_AGE2)
-  object7 = getObjectFromGUID(MAIN_DECK_AGE3)
-  object8 = getObjectFromGUID(ORANGE_DECK_AGE3)
-  object9 = getObjectFromGUID(BLACK_DECK_AGE3)
-  object10 = getObjectFromGUID(ARMADA_DECK_AGE1)
-  object11 = getObjectFromGUID(ARMADA_DECK_AGE2)
-  object12 = getObjectFromGUID(ARMADA_DECK_AGE3)
+  MAIN_DECK_AGE1= getObjectFromGUID(MAIN_DECK_AGE1)
+  ORANGE_DECK_AGE2 = getObjectFromGUID(ORANGE_DECK_AGE1)
+  BLACK_DECK_AGE1 = getObjectFromGUID(BLACK_DECK_AGE1)
+  MAIN_DECK_AGE2 = getObjectFromGUID(MAIN_DECK_AGE2)
+  ORANGE_DECK_AGE2 = getObjectFromGUID(ORANGE_DECK_AGE2)
+  BLACK_DECK_AGE2 = getObjectFromGUID(BLACK_DECK_AGE2)
+  MAIN_DECK_AGE3 = getObjectFromGUID(MAIN_DECK_AGE3)
+  ORANGE_DECK_AGE3 = getObjectFromGUID(ORANGE_DECK_AGE3)
+  BLACK_DECK_AGE3 = getObjectFromGUID(BLACK_DECK_AGE3)
+  ARMADA_DECK_AGE1 = getObjectFromGUID(ARMADA_DECK_AGE1)
+  ARMADA_DECK_AGE2 = getObjectFromGUID(ARMADA_DECK_AGE2)
+  ARMADA_DECK_AGE3 = getObjectFromGUID(ARMADA_DECK_AGE3)
   GUILDS_DECK = getObjectFromGUID(GUILDS_DECK)
   GUILDS_DECK2 = getObjectFromGUID(GUILDS_DECK2)
   GUILDS_DECK3 = getObjectFromGUID(GUILDS_DECK3)
@@ -62,108 +62,20 @@ end
 
 function shuffle_function(counter, deck)
   if counter == 0 then return true end
-  if counter > 0 then deck.shuffle() counter = counter - 1 Wait.condition(function () shuffle_function(counter, deck) end,
-                                                                          function() return check_deck(deck) end,
-                                                                          3) end
+  if counter > 0 then print("We just shuffled" .. counter) deck.shuffle() counter = counter - 1 Wait.condition(function () shuffle_function(counter, deck) end,
+                                                                                              function() return check_deck(deck) end,
+                                                                                              3) end
+end
+
+function onObjectRandomize(obj, color)
+    print(obj.getName() .. " was randomized by " .. color)
 end
 
 function check_deck(deck)
   return deck.resting
 end
 
--- AGE 1
-function deal_age1()
-  for i = 1, 10 do
-    object1.shuffle()
-    object2.shuffle()
-    object3.shuffle()
-    object10.shuffle()
-  end
-  -- split orange
-  newDeck2 = object2.cut(6)
-  TEMP_DECK_AGE1 = object1.putObject(newDeck2[2])
-  -- split black
-  newDeck3 = object3.cut(6)
-  TEMP_DECK_AGE1 = TEMP_DECK_AGE1.putObject(newDeck3[2])
-  -- split armada
-  newDeck228 = object10.cut(6)
-  FINAL_DECK_AGE1 = TEMP_DECK_AGE1.putObject(newDeck228[2])
 
-  for i = 1, 10 do
-    FINAL_DECK_AGE1.shuffle()
-  end
-
-  temporar = FINAL_DECK_AGE1.split(6)
-  for i = 0, 6 do
-    temporar[i].flip()
-  end
-  end
-
-
--- AGE2
-function deal_age2()
-  for i = 1, 10 do
-  object4.shuffle()
-  object5.shuffle()
-  object6.shuffle()
-  object11.shuffle()
-  end
-  -- split orange
-  newDeck4 = object5.cut(6)
-  TEMP_DECK_AGE2 = object4.putObject(newDeck4[2])
-  -- split black
-  newDeck5 = object6.cut(6)
-  TEMP_DECK_AGE2 = TEMP_DECK_AGE2.putObject(newDeck5[2])
-  -- split armada
-  newDeck229 = object11.cut(6)
-  FINAL_DECK_AGE2 = TEMP_DECK_AGE2.putObject(newDeck229[2])
-
-  for i = 1, 10 do
-    FINAL_DECK_AGE2.shuffle()
-  end
-  temporar2 = FINAL_DECK_AGE2.split(6)
-  for i = 1, 6 do
-    temporar2[i].flip()
-  end
-end
-
-
---AGE 3
-function deal_age3()
-  for i = 1, 10 do
-    object7.shuffle()
-    object8.shuffle()
-    object9.shuffle()
-    object12.shuffle()
-  end
-  --split orange
-  newDeck6 = object8.cut(6)
-  TEMP_DECK_AGE3 = object7.putObject(newDeck6[2])
-  --split black
-  newDeck7 = object9.cut(6)
-  TEMP_DECK_AGE3 = TEMP_DECK_AGE3.putObject(newDeck7[2])
-  --split armada
-  newDeck230 = object12.cut(6)
-  FINAL_DECK_AGE3 = TEMP_DECK_AGE3.putObject(newDeck230[2])
-  --guilds
-  GUILDS_DECK.putObject(GUILDS_DECK2)
-  GUILDS_DECK.putObject(GUILDS_DECK3)
-  GUILDS_DECK.putObject(GUILDS_DECK4)
-  GUILDS_DECK.putObject(GUILDS_DECK5)
-  --GUILDS_DECK.putObject(GUILDS_DECK6)
-  for i = 1, 10 do
-    GUILDS_DECK.shuffle()
-  end
-  CUT_PURPLE = GUILDS_DECK.cut(8)
-  FINAL_DECK_AGE3.putObject(CUT_PURPLE[2])
-  for i = 1, 10 do
-    FINAL_DECK_AGE3.shuffle()
-  end
-  temporar3 = FINAL_DECK_AGE3.split(6)
-  for i = 0, 6 do
-    temporar3[i].flip()
-  end
-end
 
 
 --LEADERS
