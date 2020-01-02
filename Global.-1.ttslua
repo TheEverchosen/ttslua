@@ -1,96 +1,163 @@
-MAIN_DECK_AGE1MAIN_DECK_AGE1 = '64b02e'
+MAIN_DECK_AGE1_6ppl = '64b02e'
+MAIN_DECK_AGE1_5ppl = '6d2459'
 ORANGE_DECK_AGE1 = '7d3602'
 BLACK_DECK_AGE1 = '8e7217'
-MAIN_DECK_AGE2 = 'ca2460'
+MAIN_DECK_AGE2_6ppl = 'ca2460'
+MAIN_DECK_AGE2_5ppl = 'cfbf35'
 ORANGE_DECK_AGE2 = '7a3b91'
 BLACK_DECK_AGE2 = 'e96078'
-MAIN_DECK_AGE3 = '620415'
+MAIN_DECK_AGE3_6ppl = '620415'
+MAIN_DECK_AGE3_5ppl = '5990df'
 ORANGE_DECK_AGE3 = '29b86e'
 BLACK_DECK_AGE3 = '56ac79'
 GUILDS_DECK = '1b9e63'
-GUILDS_DECK2 = 'a61e39'
-GUILDS_DECK3 = '64214f'
-GUILDS_DECK4 = 'b464e3'
-GUILDS_DECK5 = '37f1a4'
--- GUILDS_DECK6 = 'd16b9f'
 LEADER_DECK1 = '5117f1'
-LEADER_DECK2 = '3f5c9b'
-LEADER_DECK3 = '4dc449'
-LEADER_DECK4 = '72b705'
-LEADER_DECK5 = '17d544'
 ARMADA_DECK_AGE1 = '32e18e'
 ARMADA_DECK_AGE2 = '761a7d'
 ARMADA_DECK_AGE3 = '9c0993'
+RUIN_DECK = '8173a2'
+WONDER_DECK1 = 'd8f0f8'
+WONDER_DECK2 = '87f534'
+PLAYER_COUNTER = '3cf6a9'
 -- 4 orange 4 chornih
 function onLoad()
-  MAIN_DECK_AGE1= getObjectFromGUID(MAIN_DECK_AGE1)
-  ORANGE_DECK_AGE2 = getObjectFromGUID(ORANGE_DECK_AGE1)
+  MAIN_DECK_AGE1_6ppl = getObjectFromGUID(MAIN_DECK_AGE1_6ppl)
+  MAIN_DECK_AGE1_5ppl = getObjectFromGUID(MAIN_DECK_AGE1_5ppl)
+  ORANGE_DECK_AGE1 = getObjectFromGUID(ORANGE_DECK_AGE1)
   BLACK_DECK_AGE1 = getObjectFromGUID(BLACK_DECK_AGE1)
-  MAIN_DECK_AGE2 = getObjectFromGUID(MAIN_DECK_AGE2)
+  MAIN_DECK_AGE2_6ppl = getObjectFromGUID(MAIN_DECK_AGE2_6ppl)
+  MAIN_DECK_AGE2_5ppl = getObjectFromGUID(MAIN_DECK_AGE2_5ppl)
   ORANGE_DECK_AGE2 = getObjectFromGUID(ORANGE_DECK_AGE2)
   BLACK_DECK_AGE2 = getObjectFromGUID(BLACK_DECK_AGE2)
-  MAIN_DECK_AGE3 = getObjectFromGUID(MAIN_DECK_AGE3)
+  MAIN_DECK_AGE3_6ppl = getObjectFromGUID(MAIN_DECK_AGE3_6ppl)
+  MAIN_DECK_AGE3_5ppl = getObjectFromGUID(MAIN_DECK_AGE3_5ppl)
   ORANGE_DECK_AGE3 = getObjectFromGUID(ORANGE_DECK_AGE3)
   BLACK_DECK_AGE3 = getObjectFromGUID(BLACK_DECK_AGE3)
   ARMADA_DECK_AGE1 = getObjectFromGUID(ARMADA_DECK_AGE1)
   ARMADA_DECK_AGE2 = getObjectFromGUID(ARMADA_DECK_AGE2)
   ARMADA_DECK_AGE3 = getObjectFromGUID(ARMADA_DECK_AGE3)
   GUILDS_DECK = getObjectFromGUID(GUILDS_DECK)
-  GUILDS_DECK2 = getObjectFromGUID(GUILDS_DECK2)
-  GUILDS_DECK3 = getObjectFromGUID(GUILDS_DECK3)
-  GUILDS_DECK4 = getObjectFromGUID(GUILDS_DECK4)
-  GUILDS_DECK5 = getObjectFromGUID(GUILDS_DECK5)
---  GUILDS_DECK6 = getObjectFromGUID(GUILDS_DECK6)
   LEADER_DECK1 = getObjectFromGUID(LEADER_DECK1)
-  LEADER_DECK2 = getObjectFromGUID(LEADER_DECK2)
-  LEADER_DECK3 = getObjectFromGUID(LEADER_DECK3)
-  LEADER_DECK4 = getObjectFromGUID(LEADER_DECK4)
-  LEADER_DECK5 = getObjectFromGUID(LEADER_DECK5)
+  RUIN_DECK = getObjectFromGUID(RUIN_DECK)
+  WONDER_DECK1 = getObjectFromGUID(WONDER_DECK1)
+  WONDER_DECK2 = getObjectFromGUID(WONDER_DECK2)
+  PLAYER_COUNTER = getObjectFromGUID(PLAYER_COUNTER)
+  DECK_ARRAY = {"64b02e", "6d2459", "7d3602","8e7217", "ca2460", "cfbf35", "7a3b91", "e96078", "620415", "5990df", "29b86e", "56ac79", "1b9e63",
+  "5117f1", "32e18e", "761a7d", "9c0993", "3cf6a9", "8173a2", "d8f0f8", "87f534"}
 end
 
-haha = 1
 
 
 function onScriptingButtonDown(index, player_color)
-  if index == 1 and player_color == 'White' then deal_age1() deal_age2() deal_age3() end
-  if index == 2 then deal_leaders() end
-  if index == 4 then shuffle_function(5, LEADER_DECK1) end
+  if index == 1 and player_color == 'White' then deal_age1() end
+  if index == 2 and player_color == 'White' then deal_age2() end
+  if index == 3 and player_color == 'White' then deal_age3() end
+  if index == 4 and player_color == 'White' then deal_wonders() end
+  if index == 8 and player_color == 'White' then initial_shuffle(DECK_ARRAY) end
+  if index == 9 and player_color == 'White' then deal_wonders() end
+end
+
+function deal_wonders()
+  custom_deal(WONDER_DECK1, 1)
+  custom_deal(WONDER_DECK2, 2)
+end
+
+function custom_deal(deck, cards_to_deal)
+  player_list = Player.getPlayers()
+  for i, playerReference in ipairs(player_list) do
+    if playerReference.seated then deck.deal(cards_to_deal, playerReference.color) end
+  end
+end
+
+function initial_shuffle(decks_array)
+  for i = 1, 21 do
+  shuffle_function(math.random(1, 150), getObjectFromGUID(decks_array[i]))
+  getObjectFromGUID(decks_array[i]).flip()
+end
 end
 
 function onUpdate ()
 end
 
+function custom_cut(deck, index)
+  new_deck = deck.cut(index)
+  return new_deck[2]
+end
+
+function deal_age1()
+  number_of_players = PLAYER_COUNTER.getValue()
+  if number_of_players == 5 then
+    MAIN_DECK_AGE1_5ppl.putObject(custom_cut(ORANGE_DECK_AGE1, number_of_players))
+    MAIN_DECK_AGE1_5ppl.putObject(custom_cut(BLACK_DECK_AGE1, number_of_players))
+    MAIN_DECK_AGE1_5ppl.putObject(custom_cut(ARMADA_DECK_AGE1, number_of_players))
+    MAIN_DECK_AGE1_5ppl.flip()
+    shuffle_function(math.random(1, 9733), MAIN_DECK_AGE1_5ppl)
+    custom_deal(MAIN_DECK_AGE1_5ppl, 10)
+  end
+
+  if number_of_players == 6 then
+    MAIN_DECK_AGE1_6ppl.putObject(custom_cut(ORANGE_DECK_AGE1, number_of_players))
+    MAIN_DECK_AGE1_6ppl.putObject(custom_cut(BLACK_DECK_AGE1, number_of_players))
+    MAIN_DECK_AGE1_6ppl.putObject(custom_cut(ARMADA_DECK_AGE1, number_of_players))
+    MAIN_DECK_AGE1_6ppl.flip()
+    shuffle_function(math.random(1, 9733), MAIN_DECK_AGE1_6ppl)
+    custom_deal(MAIN_DECK_AGE1_6ppl, 10)
+  end
+end
+
+function deal_age2()
+  number_of_players = PLAYER_COUNTER.getValue()
+  if number_of_players == 5 then
+    MAIN_DECK_AGE2_5ppl.putObject(custom_cut(ORANGE_DECK_AGE2, number_of_players))
+    MAIN_DECK_AGE2_5ppl.putObject(custom_cut(BLACK_DECK_AGE2, number_of_players))
+    MAIN_DECK_AGE2_5ppl.putObject(custom_cut(ARMADA_DECK_AGE2, number_of_players))
+    MAIN_DECK_AGE2_5ppl.flip()
+    shuffle_function(math.random(1, 9733), MAIN_DECK_AGE2_5ppl)
+    custom_deal(MAIN_DECK_AGE2_5ppl, 10)
+  end
+
+  if number_of_players == 6 then
+    MAIN_DECK_AGE2_6ppl.putObject(custom_cut(ORANGE_DECK_AGE2, number_of_players))
+    MAIN_DECK_AGE2_6ppl.putObject(custom_cut(BLACK_DECK_AGE2, number_of_players))
+    MAIN_DECK_AGE2_6ppl.putObject(custom_cut(ARMADA_DECK_AGE2, number_of_players))
+    MAIN_DECK_AGE2_6ppl.flip()
+    shuffle_function(math.random(1, 9733), MAIN_DECK_AGE2_6ppl)
+    custom_deal(MAIN_DECK_AGE2_6ppl, 10)
+  end
+
+end
+
+function deal_age3()
+  number_of_players = PLAYER_COUNTER.getValue()
+  if number_of_players == 5 then
+    MAIN_DECK_AGE3_5ppl.putObject(custom_cut(ORANGE_DECK_AGE3, number_of_players))
+    MAIN_DECK_AGE3_5ppl.putObject(custom_cut(BLACK_DECK_AGE3, number_of_players))
+    MAIN_DECK_AGE3_5ppl.putObject(custom_cut(ARMADA_DECK_AGE3, number_of_players))
+    MAIN_DECK_AGE3_5ppl.putObject(custom_cut(GUILDS_DECK, number_of_players + 2))
+    MAIN_DECK_AGE3_5ppl.flip()
+    shuffle_function(math.random(1, 9733), MAIN_DECK_AGE3_5ppl)
+    custom_deal(MAIN_DECK_AGE3_5ppl, 10)
+  end
+
+  if number_of_players == 6 then
+    MAIN_DECK_AGE3_6ppl.putObject(custom_cut(ORANGE_DECK_AGE3, number_of_players))
+    MAIN_DECK_AGE3_6ppl.putObject(custom_cut(BLACK_DECK_AGE3, number_of_players))
+    MAIN_DECK_AGE3_6ppl.putObject(custom_cut(ARMADA_DECK_AGE3, number_of_players))
+    MAIN_DECK_AGE3_6ppl.putObject(custom_cut(GUILDS_DECK, number_of_players + 2))
+    MAIN_DECK_AGE3_6ppl.flip()
+    shuffle_function(math.random(1, 9733), MAIN_DECK_AGE3_6ppl)
+    custom_deal(MAIN_DECK_AGE3_6ppl, 10)
+  end
+
+end
+
 function shuffle_function(counter, deck)
   if counter == 0 then return true end
-  if counter > 0 then print("We just shuffled" .. counter) deck.shuffle() counter = counter - 1 Wait.condition(function () shuffle_function(counter, deck) end,
+  if counter > 0 then deck.shuffle() counter = counter - 1 Wait.condition(function () shuffle_function(counter, deck) end,
                                                                                               function() return check_deck(deck) end,
                                                                                               3) end
 end
 
-function onObjectRandomize(obj, color)
-    print(obj.getName() .. " was randomized by " .. color)
-end
-
 function check_deck(deck)
   return deck.resting
-end
-
-
-
-
---LEADERS
-function deal_leaders()
-    LEADER_DECK1.putObject(LEADER_DECK2)
-    LEADER_DECK1.putObject(LEADER_DECK3)
-    LEADER_DECK1.putObject(LEADER_DECK4)
-    LEADER_DECK1.putObject(LEADER_DECK5)
-    for i = 1, 10 do
-      LEADER_DECK1.shuffle()
-    end
-    LEADER_DECK1.deal(4, 'White')
-    LEADER_DECK1.deal(4, 'Green')
-    LEADER_DECK1.deal(4, 'Orange')
-    LEADER_DECK1.deal(4, 'Blue')
-    LEADER_DECK1.deal(4, 'Pink')
-    LEADER_DECK1.flip()
 end
