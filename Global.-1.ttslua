@@ -1,10 +1,13 @@
-MAIN_DECK_AGE1MAIN_DECK_AGE1 = '64b02e'
+MAIN_DECK_AGE1_6ppl = '64b02e'
+MAIN_DECK_AGE1_5ppl = '6d2459'
 ORANGE_DECK_AGE1 = '7d3602'
 BLACK_DECK_AGE1 = '8e7217'
-MAIN_DECK_AGE2 = 'ca2460'
+MAIN_DECK_AGE2_6ppl = 'ca2460'
+MAIN_DECK_AGE2_5ppl = 'cfbf35'
 ORANGE_DECK_AGE2 = '7a3b91'
 BLACK_DECK_AGE2 = 'e96078'
-MAIN_DECK_AGE3 = '620415'
+MAIN_DECK_AGE3_6ppl = '620415'
+MAIN_DECK_AGE3_5ppl = '5990df'
 ORANGE_DECK_AGE3 = '29b86e'
 BLACK_DECK_AGE3 = '56ac79'
 GUILDS_DECK = '1b9e63'
@@ -23,13 +26,16 @@ ARMADA_DECK_AGE2 = '761a7d'
 ARMADA_DECK_AGE3 = '9c0993'
 -- 4 orange 4 chornih
 function onLoad()
-  MAIN_DECK_AGE1= getObjectFromGUID(MAIN_DECK_AGE1)
+  MAIN_DECK_AGE1_6ppl = getObjectFromGUID(MAIN_DECK_AGE1_6ppl)
+  MAIN_DECK_AGE1_5ppl = getObjectFromGUID(MAIN_DECK_AGE1_5ppl)
   ORANGE_DECK_AGE2 = getObjectFromGUID(ORANGE_DECK_AGE1)
   BLACK_DECK_AGE1 = getObjectFromGUID(BLACK_DECK_AGE1)
-  MAIN_DECK_AGE2 = getObjectFromGUID(MAIN_DECK_AGE2)
+  MAIN_DECK_AGE2_6ppl = getObjectFromGUID(MAIN_DECK_AGE2_6ppl)
+  MAIN_DECK_AGE2_5ppl = getObjectFromGUID(MAIN_DECK_AGE2_5ppl)
   ORANGE_DECK_AGE2 = getObjectFromGUID(ORANGE_DECK_AGE2)
   BLACK_DECK_AGE2 = getObjectFromGUID(BLACK_DECK_AGE2)
-  MAIN_DECK_AGE3 = getObjectFromGUID(MAIN_DECK_AGE3)
+  MAIN_DECK_AGE3_6ppl = getObjectFromGUID(MAIN_DECK_AGE3_6ppl)
+  MAIN_DECK_AGE3_5ppl = getObjectFromGUID(MAIN_DECK_AGE3_5ppl)
   ORANGE_DECK_AGE3 = getObjectFromGUID(ORANGE_DECK_AGE3)
   BLACK_DECK_AGE3 = getObjectFromGUID(BLACK_DECK_AGE3)
   ARMADA_DECK_AGE1 = getObjectFromGUID(ARMADA_DECK_AGE1)
@@ -48,11 +54,12 @@ function onLoad()
   LEADER_DECK5 = getObjectFromGUID(LEADER_DECK5)
 end
 
-haha = 1
+function onChat(message, player)
+  print(player)
 
 
 function onScriptingButtonDown(index, player_color)
-  if index == 1 and player_color == 'White' then deal_age1() deal_age2() deal_age3() end
+  -- if index == 1 and player_color == 'White' then deal_age1() deal_age2() deal_age3() end
   if index == 2 then deal_leaders() end
   if index == 4 then shuffle_function(5, LEADER_DECK1) end
 end
