@@ -161,23 +161,3 @@ end
 function check_deck(deck)
   return deck.resting
 end
-
-
-
-
---LEADERS
-function deal_leaders()
-    LEADER_DECK1.putObject(LEADER_DECK2)
-    LEADER_DECK1.putObject(LEADER_DECK3)
-    LEADER_DECK1.putObject(LEADER_DECK4)
-    LEADER_DECK1.putObject(LEADER_DECK5)
-    for i = 1, 10 do
-      LEADER_DECK1.shuffle()
-    end
-    LEADER_DECK1.deal(4, 'White')
-    LEADER_DECK1.deal(4, 'Green')
-    LEADER_DECK1.deal(4, 'Orange')
-    LEADER_DECK1.deal(4, 'Blue')
-    LEADER_DECK1.deal(4, 'Pink')
-    LEADER_DECK1.flip()
-end
