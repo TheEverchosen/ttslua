@@ -19,7 +19,7 @@ RUIN_DECK = '8173a2'
 WONDER_DECK1 = 'd8f0f8'
 WONDER_DECK2 = '87f534'
 PLAYER_COUNTER = '3cf6a9'
--- 4 orange 4 chornih
+
 function onLoad()
   MAIN_DECK_AGE1_6ppl = getObjectFromGUID(MAIN_DECK_AGE1_6ppl)
   MAIN_DECK_AGE1_5ppl = getObjectFromGUID(MAIN_DECK_AGE1_5ppl)
