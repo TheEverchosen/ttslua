@@ -19,7 +19,7 @@ RUIN_DECK = '8173a2'
 WONDER_DECK1 = 'd8f0f8'
 WONDER_DECK2 = '87f534'
 PLAYER_COUNTER = '3cf6a9'
--- 4 orange 4 chornih
+
 function onLoad()
   MAIN_DECK_AGE1_6ppl = getObjectFromGUID(MAIN_DECK_AGE1_6ppl)
   MAIN_DECK_AGE1_5ppl = getObjectFromGUID(MAIN_DECK_AGE1_5ppl)
@@ -42,7 +42,7 @@ function onLoad()
   WONDER_DECK1 = getObjectFromGUID(WONDER_DECK1)
   WONDER_DECK2 = getObjectFromGUID(WONDER_DECK2)
   PLAYER_COUNTER = getObjectFromGUID(PLAYER_COUNTER)
-  DECK_ARRAY = {"64b02e", "6d2459", "7d3602","8e7217", "ca2460", "cfbf35", "7a3b91", "e96078", "620415", "5990df", "29b86e", "56ac79", "1b9e63",
+  DECK_ARRAY = {"64b02e", "6d2459", "7d3602", "8e7217", "ca2460", "cfbf35", "7a3b91", "e96078", "620415", "5990df", "29b86e", "56ac79", "1b9e63",
   "5117f1", "32e18e", "761a7d", "9c0993", "3cf6a9", "8173a2", "d8f0f8", "87f534"}
 end
 
@@ -53,6 +53,8 @@ function onScriptingButtonDown(index, player_color)
   if index == 2 and player_color == 'White' then deal_age2() end
   if index == 3 and player_color == 'White' then deal_age3() end
   if index == 4 and player_color == 'White' then deal_wonders() end
+  if index == 5 and player_color == 'White' then custom_deal(LEADER_DECK1, 4) end -- DEAL LEADERS
+  if index == 6 and player_color == 'White' then custom_deal(RUIN_DECK, 4) end
   if index == 8 and player_color == 'White' then initial_shuffle(DECK_ARRAY) end
   if index == 9 and player_color == 'White' then deal_wonders() end
 end
